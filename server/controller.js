@@ -14,11 +14,11 @@ module.exports = {
         const {address, price, imageURL} = req.body;
         let newHouse = {
             address,
-            price,
+            price: +price,
             imageURL,
             id: globalID
         }
-        console.log(newHouse)
+        console.log
         houses.push(newHouse)
         globalID++
         res.status(200).send(houses)
@@ -27,7 +27,8 @@ module.exports = {
         console.log(req.params.id)
         console.log(req.body.type)
         const {type} = req.body;
-        let index = houses.findIndex((elem) => elem.id === +req.params.id)
+        let index = houses.findIndex(elem => elem.id == req.params.id)
+        console.log(index)
         if(type === 'minus' && houses[index].price > 1){
             houses[index].price -= 10000
             res.status(200).send(houses)
